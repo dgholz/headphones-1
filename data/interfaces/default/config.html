@@ -745,7 +745,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <label>Extra Torznab categories</label>
-                                                    <input type="text" class="override-float" name="torznab_extra_categories" value="${config['torznab_extra_categories']}" size="10" title="Extra categories to search e.g. 3000 for Audio.">
+                                                    <input type="text" class="override-float" name="torznab_extra_categories${torznab_number}" value="${','.join(config['torznab_extra_categories'])}" size="10" title="Extra comma-separated categories to search e.g. 3000 for Audio.">
                                                 </div>
                                                 <div class="row checkbox">
                                                     <input id="torznab_enabled" type="checkbox" name="torznab_enabled${torznab_number}" value="1" ${torznab_enabled} /><label>Enabled</label>
