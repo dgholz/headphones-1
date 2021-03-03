@@ -1215,6 +1215,7 @@ class WebInterface(object):
             "torznab_apikey": headphones.CONFIG.TORZNAB_APIKEY,
             "torznab_ratio": headphones.CONFIG.TORZNAB_RATIO,
             "torznab_enabled": checked(headphones.CONFIG.TORZNAB_ENABLED),
+            "torznab_extra_categories": headphones.CONFIG.TORZNAB_EXTRA_CATEGORIES,
             "extra_torznabs": headphones.CONFIG.get_extra_torznabs(),
             "use_nzbsorg": checked(headphones.CONFIG.NZBSORG),
             "nzbsorg_uid": headphones.CONFIG.NZBSORG_UID,
@@ -1459,7 +1460,7 @@ class WebInterface(object):
 
         checked_configs = [
             "launch_browser", "enable_https", "api_enabled", "use_blackhole", "headphones_indexer",
-            "use_newznab", "newznab_enabled", "use_torznab", "torznab_enabled",
+            "use_newznab", "newznab_enabled", "use_torznab", "torznab_enabled", "torznab_extra_categories",
             "use_nzbsorg", "use_omgwtfnzbs", "use_piratebay", "use_oldpiratebay",
             "use_waffles", "use_rutracker",
             "use_orpheus", "use_redacted", "redacted_use_fltoken", "preferred_bitrate_allow_lossless",
@@ -1537,15 +1538,17 @@ class WebInterface(object):
             if len(torznab_number):
                 torznab_api_key = 'torznab_api' + torznab_number
                 torznab_enabled_key = 'torznab_enabled' + torznab_number
+                torznab_extra_categories_key = 'torznab_extra_categories' + torznab_number
                 torznab_ratio_key = 'torznab_ratio' + torznab_number
                 torznab_host = kwargs.get(torznab_host_key, '')
                 torznab_api = kwargs.get(torznab_api_key, '')
                 torznab_enabled = int(kwargs.get(torznab_enabled_key, 0))
+                torznab_extra_categories = filter(None, kwargs.get(torznab_extra_categories_key, '').split(','))
                 torznab_ratio = kwargs.get(torznab_ratio_key, '')
-                for key in [torznab_host_key, torznab_api_key, torznab_enabled_key, torznab_ratio_key]:
+                for key in [torznab_host_key, torznab_api_key, torznab_enabled_key, torznab_extra_categories_key, torznab_ratio_key]:
                     if key in kwargs:
                         del kwargs[key]
-                extra_torznabs.append((torznab_host, torznab_api, torznab_ratio, torznab_enabled))
+                extra_torznabs.append((torznab_host, torznab_api, torznab_ratio, torznab_extra_categories_key, torznab_enabled))
 
         # Convert the extras to list then string. Coming in as 0 or 1 (append new extras to the end)
         temp_extras_list = []

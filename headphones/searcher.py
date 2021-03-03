@@ -1284,24 +1284,25 @@ def searchTorrent(album, new=False, losslessOnly=False, albumlength=None,
 
         if headphones.CONFIG.TORZNAB_HOST and headphones.CONFIG.TORZNAB_ENABLED:
             torznab_hosts.append((headphones.CONFIG.TORZNAB_HOST, headphones.CONFIG.TORZNAB_APIKEY,
-                                  headphones.CONFIG.TORZNAB_RATIO, headphones.CONFIG.TORZNAB_ENABLED))
+                                  headphones.CONFIG.TORZNAB_RATIO, headphones.CONFIG.TORZNAB_EXTRA_CATEGORIES,
+                                  headphones.CONFIG.TORZNAB_ENABLED))
 
         for torznab_host in headphones.CONFIG.get_extra_torznabs():
-            if torznab_host[3] == '1' or torznab_host[3] == 1:
+            if torznab_host[4] == '1' or torznab_host[4] == 1:
                 torznab_hosts.append(torznab_host)
 
+        categories = ['3010', '3050']
         if headphones.CONFIG.PREFERRED_QUALITY == 3 or losslessOnly:
-            categories = "3040"
+            categories = ['3040']
             maxsize = 10000000000
         elif headphones.CONFIG.PREFERRED_QUALITY == 1 or allow_lossless:
-            categories = "3040,3010,3050"
+            categories.append('3040')
             maxsize = 10000000000
         else:
-            categories = "3010,3050"
             maxsize = 300000000
 
         if album['Type'] == 'Other':
-            categories = "3030"
+            categories = ['3030']
             logger.info("Album type is audiobook/spokenword. Using audiobook category")
 
         for torznab_host in torznab_hosts:
@@ -1319,7 +1320,7 @@ def searchTorrent(album, new=False, losslessOnly=False, albumlength=None,
             params = {
                 "t": "search",
                 "apikey": torznab_host[1],
-                "cat": categories,
+                "cat": ','.join(categories + torznab_host[3]),
                 "maxage": headphones.CONFIG.USENET_RETENTION,
                 "q": term
             }

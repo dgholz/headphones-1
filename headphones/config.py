@@ -281,6 +281,7 @@ _CONFIG_DEFINITIONS = {
     'TORZNAB': (int, 'Torznab', 0),
     'TORZNAB_APIKEY': (str, 'Torznab', ''),
     'TORZNAB_ENABLED': (int, 'Torznab', 1),
+    'TORZNAB_EXTRA_CATEGORIES': (str, 'Torznab', ''),
     'TORZNAB_HOST': (str, 'Torznab', ''),
     'TORZNAB_RATIO': (str, 'Torznab', ''),
     'TRANSMISSION_HOST': (str, 'Transmission', ''),
