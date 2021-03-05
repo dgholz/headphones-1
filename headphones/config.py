@@ -413,6 +413,7 @@ class Config(object):
     def get_extra_torznabs(self):
         """ Return the extra torznab tuples """
         headphones.logger.info("get your extra torznabs here")
+        headphones.logger.info(self.EXTRA_TORZNABS)
         torznab_fields = [iter(self.EXTRA_TORZNABS)]*5
         torznab_fields[3] = [str(_).replace('+', ',') for _ in torznab_fields[3]]
         extra_torznabs = list(
