@@ -415,7 +415,7 @@ class Config(object):
         headphones.logger.info("get your extra torznabs here")
         headphones.logger.info(self.EXTRA_TORZNABS)
         torznab_fields = [iter(self.EXTRA_TORZNABS)]*5
-        torznab_fields[3] = [str(_).replace('+', ',') for _ in torznab_fields[3]]
+        torznab_fields[3] = map(lambda _: str(_).replace('+', ','), torznab_fields[3])
         extra_torznabs = list(
             itertools.izip(*torznab_fields)
         )
