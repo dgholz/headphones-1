@@ -506,7 +506,7 @@ class Config(object):
             if self.EXTRA_TORZNABS:
                 extra_torznabs = list(
                     itertools.izip(*[itertools.islice(self.EXTRA_TORZNABS, i, None, 4)
-                                     for i in range(3)])
+                                     for i in range(4)])
                 )
                 new_torznabs = []
                 for torznab in extra_torznabs:
