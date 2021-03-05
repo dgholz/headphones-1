@@ -1548,7 +1548,7 @@ class WebInterface(object):
                 for key in [torznab_host_key, torznab_api_key, torznab_enabled_key, torznab_extra_categories_key, torznab_ratio_key]:
                     if key in kwargs:
                         del kwargs[key]
-                extra_torznabs.append((torznab_host, torznab_api, torznab_ratio, torznab_extra_categories_key, torznab_enabled))
+                extra_torznabs.append((torznab_host, torznab_api, torznab_ratio, torznab_extra_categories, torznab_enabled))
 
         # Convert the extras to list then string. Coming in as 0 or 1 (append new extras to the end)
         temp_extras_list = []
