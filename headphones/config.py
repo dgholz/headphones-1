@@ -490,8 +490,7 @@ class Config(object):
             # Add Seed Ratio to Torznabs
             if self.EXTRA_TORZNABS:
                 extra_torznabs = list(
-                    itertools.izip(*[itertools.islice(self.EXTRA_TORZNABS, i, None, 3)
-                                     for i in range(3)])
+                    itertools.izip(*[iter(self.EXTRA_TORZNABS)]*3)
                 )
                 new_torznabs = []
                 for torznab in extra_torznabs:
@@ -505,8 +504,7 @@ class Config(object):
             # add category
             if self.EXTRA_TORZNABS:
                 extra_torznabs = list(
-                    itertools.izip(*[itertools.islice(self.EXTRA_TORZNABS, i, None, 4)
-                                     for i in range(4)])
+                    itertools.izip(*[iter(self.EXTRA_TORZNABS)]*4)
                 )
                 new_torznabs = []
                 for torznab in extra_torznabs:
