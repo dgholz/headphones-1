@@ -425,6 +425,7 @@ class Config(object):
 
     def add_extra_torznab(self, torznab):
         """ Add a new extra torznab """
+        torznab = list(torznab)
         torznab[3] = '+'.join(torznab[3])
         extra_torznabs = self.EXTRA_TORZNABS
         extra_torznabs.extend(torznab)
