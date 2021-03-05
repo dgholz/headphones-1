@@ -499,3 +499,16 @@ class Config(object):
                     self.EXTRA_TORZNABS = new_torznabs
 
             self.CONFIG_VERSION = '6'
+
+        if self.CONFIG_VERSION == '6':
+            # add category
+            if self.EXTRA_TORZNABS:
+                extra_torznabs = list(
+                    itertools.izip(*[itertools.islice(self.EXTRA_TORZNABS, i, None, 4)
+                                     for i in range(3)])
+                )
+                new_torznabs = []
+                for torznab in extra_torznabs:
+                    new_torznabs.extend([torznab[0], torznab[1], torznab[2], u'', torznab[3]])
+                if new_torznabs:
+                    self.EXTRA_TORZNABS = new_torznabs
