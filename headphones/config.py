@@ -427,9 +427,7 @@ class Config(object):
         """ Add a new extra torznab """
         torznab = list(torznab)
         torznab[3] = torznab[3].replace(',', '+')
-        extra_torznabs = self.EXTRA_TORZNABS
-        extra_torznabs.extend(torznab)
-        self.EXTRA_TORZNABS = extra_torznabs
+        self.EXTRA_TORZNABS = self.EXTRA_TORZNABS.extend(torznab)
 
     def __getattr__(self, name):
         """
