@@ -512,3 +512,5 @@ class Config(object):
                     new_torznabs.extend([torznab[0], torznab[1], torznab[2], u'', torznab[3]])
                 if new_torznabs:
                     self.EXTRA_TORZNABS = new_torznabs
+                    
+            self.CONFIG_VERSION = '7'
