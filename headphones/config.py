@@ -412,9 +412,10 @@ class Config(object):
 
     def get_extra_torznabs(self):
         """ Return the extra torznab tuples """
+        torznab_fields = [iter(self.EXTRA_TORZNABS)]*5
+        torznab_fields[3] = [_.split('+') for _ in torznab_fields[3]]
         extra_torznabs = list(
-            itertools.izip(*[itertools.islice(self.EXTRA_TORZNABS, i, None, 4)
-                             for i in range(4)])
+            itertools.izip(*torznab_fields)
         )
         return extra_torznabs
 
@@ -424,9 +425,9 @@ class Config(object):
 
     def add_extra_torznab(self, torznab):
         """ Add a new extra torznab """
+        torznab[3] = '+'.join(torznab[3])
         extra_torznabs = self.EXTRA_TORZNABS
-        for item in torznab:
-            extra_torznabs.append(item)
+        extra_torznabs.extend(torznab)
         self.EXTRA_TORZNABS = extra_torznabs
 
     def __getattr__(self, name):
