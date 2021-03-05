@@ -1543,7 +1543,7 @@ class WebInterface(object):
                 torznab_host = kwargs.get(torznab_host_key, '')
                 torznab_api = kwargs.get(torznab_api_key, '')
                 torznab_enabled = int(kwargs.get(torznab_enabled_key, 0))
-                torznab_extra_categories = filter(None, kwargs.get(torznab_extra_categories_key, '').split(','))
+                torznab_extra_categories = kwargs.get(torznab_extra_categories_key, '')
                 torznab_ratio = kwargs.get(torznab_ratio_key, '')
                 for key in [torznab_host_key, torznab_api_key, torznab_enabled_key, torznab_extra_categories_key, torznab_ratio_key]:
                     if key in kwargs:

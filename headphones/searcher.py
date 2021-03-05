@@ -1320,7 +1320,7 @@ def searchTorrent(album, new=False, losslessOnly=False, albumlength=None,
             params = {
                 "t": "search",
                 "apikey": torznab_host[1],
-                "cat": ','.join(categories + torznab_host[3]),
+                "cat": ','.join(categories + filter(None, [torznab_host[3]])),
                 "maxage": headphones.CONFIG.USENET_RETENTION,
                 "q": term
             }
